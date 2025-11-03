@@ -1,5 +1,5 @@
 {
-  "name": "tplus-strapi",
+  "name": "tplus-strapi-5",
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
@@ -15,14 +15,14 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.29.0",
-    "@strapi/plugin-users-permissions": "5.29.0",
-    "@strapi/strapi": "5.29.0",
+    "@strapi/plugin-cloud": "5.30.0",
+    "@strapi/plugin-users-permissions": "5.30.0",
+    "@strapi/strapi": "5.30.0",
     "mysql2": "3.9.8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "strapi-csv-import-export": "^0.0.6",
+    "strapi-plugin-tablify": "^1.0.3",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "3f77d956-273d-4442-a9de-7a2c8caee206",
-    "installId": "cc3e072e230138ed7f73a83e5a3849e482e673e447ca8d5a7116b19b46d3dcac"
+    "uuid": "5bd454dc-5860-4159-9c2a-c21ff4919fa5",
+    "installId": "1d07609f275576248f59ffd2f809ce27994cca57839c0d3babf63afd0cd84621"
   }
 }

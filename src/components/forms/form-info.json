@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_forms_form_infos",
+  "info": {
+    "displayName": "FormInfo",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "formID": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "formTitle": {
+      "type": "string",
+      "default": "Application Form"
+    },
+    "description": {
+      "type": "text"
+    },
+    "submitButtonText": {
+      "type": "string",
+      "default": "Submit"
+    }
+  },
+  "config": {}
+}
