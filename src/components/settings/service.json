@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_settings_services",
+  "info": {
+    "displayName": "ServiceBase",
+    "icon": "cog"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "serviceName": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

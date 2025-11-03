@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "GovConnect": {
+      "type": "component",
+      "component": "settings.service",
+      "repeatable": false
+    }
+  }
+}
