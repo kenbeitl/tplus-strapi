@@ -7,7 +7,13 @@ export interface FormsFormInfo extends Struct.ComponentSchema {
     icon: 'stack';
   };
   attributes: {
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     formID: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;

@@ -15,12 +15,16 @@
       "type": "string",
       "default": "Application Form"
     },
-    "description": {
-      "type": "text"
-    },
     "submitButtonText": {
       "type": "string",
       "default": "Submit"
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   },
   "config": {}
