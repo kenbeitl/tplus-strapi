@@ -469,12 +469,13 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFormForm extends Struct.CollectionTypeSchema {
-  collectionName: 'forms';
+export interface ApiFormTemplateFormTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'form_templates';
   info: {
-    displayName: 'Form';
-    pluralName: 'forms';
-    singularName: 'form';
+    displayName: 'FormTemplate';
+    pluralName: 'form-templates';
+    singularName: 'form-template';
   };
   options: {
     draftAndPublish: true;
@@ -483,9 +484,12 @@ export interface ApiFormForm extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    FormList: Schema.Attribute.Component<'forms.form-info', true>;
+    FormTemplate: Schema.Attribute.Component<'forms.form-info', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::form.form'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::form-template.form-template'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -1033,7 +1037,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::application.application': ApiApplicationApplication;
-      'api::form.form': ApiFormForm;
+      'api::form-template.form-template': ApiFormTemplateFormTemplate;
       'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

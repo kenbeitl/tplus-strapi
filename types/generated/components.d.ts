@@ -14,13 +14,13 @@ export interface FormsFormInfo extends Struct.ComponentSchema {
           preset: 'defaultHtml';
         }
       >;
-    formID: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     formTitle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Application Form'>;
     submitButtonText: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Submit'>;
+    templateId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
   };
 }
 

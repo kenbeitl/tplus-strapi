@@ -1,20 +1,20 @@
 {
   "kind": "collectionType",
-  "collectionName": "forms",
+  "collectionName": "form_templates",
   "info": {
-    "singularName": "form",
-    "pluralName": "forms",
-    "displayName": "Form"
+    "singularName": "form-template",
+    "pluralName": "form-templates",
+    "displayName": "FormTemplate"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "FormList": {
+    "FormTemplate": {
       "type": "component",
       "component": "forms.form-info",
-      "repeatable": true
+      "repeatable": false
     }
   }
 }

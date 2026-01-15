@@ -6,7 +6,7 @@
   },
   "options": {},
   "attributes": {
-    "formID": {
+    "templateId": {
       "type": "string",
       "required": true,
       "unique": true
