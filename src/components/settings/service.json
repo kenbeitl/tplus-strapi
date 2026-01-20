@@ -7,14 +7,20 @@
   "options": {},
   "attributes": {
     "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "type": "customField",
+      "customField": "plugin::lucide-icon-picker.lucide-icon"
     },
     "serviceName": {
       "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "slug": {
+      "type": "string",
+      "required": false
     }
   },
   "config": {}

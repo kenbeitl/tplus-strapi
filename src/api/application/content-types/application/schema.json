@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "formID": {
+    "formId": {
       "type": "string",
       "required": true,
       "unique": false

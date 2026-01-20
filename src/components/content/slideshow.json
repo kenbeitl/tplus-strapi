@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_content_slideshows",
+  "info": {
+    "displayName": "Slideshow",
+    "icon": "slideshow"
+  },
+  "options": {},
+  "attributes": {
+    "Slide": {
+      "type": "component",
+      "component": "content.slide",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

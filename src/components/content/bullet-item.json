@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_content_bullet_items",
+  "info": {
+    "displayName": "ChecklistItem",
+    "icon": "plus"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

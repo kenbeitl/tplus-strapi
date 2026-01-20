@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_content_module_bases",
+  "info": {
+    "displayName": "Base",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::lucide-icon-picker.lucide-icon"
+    },
+    "iconColor": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    },
+    "iconBgColor": {
+      "type": "customField",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "inlineIcon"
+            },
+            false
+          ]
+        }
+      },
+      "customField": "plugin::color-picker.color",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    },
+    "inlineIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "emoji": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "context": {
+      "type": "text"
+    },
+    "centeredContent": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

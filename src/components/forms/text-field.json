@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_forms_text_fields",
+  "info": {
+    "displayName": "TextField"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "default": {
+      "type": "string"
+    },
+    "textArea": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

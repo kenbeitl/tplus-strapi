@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_content_slides",
+  "info": {
+    "displayName": "Slide",
+    "icon": "discuss"
+  },
+  "options": {},
+  "attributes": {
+    "bgColor": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    },
+    "useImage": {
+      "type": "boolean"
+    },
+    "bgImage": {
+      "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "useImage"
+            },
+            true
+          ]
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "base": {
+      "type": "component",
+      "component": "content.module-base",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

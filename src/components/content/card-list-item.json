@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_content_card_list_items",
+  "info": {
+    "displayName": "CardListItem",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "base": {
+      "type": "component",
+      "component": "content.module-base",
+      "repeatable": false
+    },
+    "list": {
+      "type": "component",
+      "component": "content.bullet-list",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

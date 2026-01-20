@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_content_bullet_lists",
+  "info": {
+    "displayName": "Checklist",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "listItem": {
+      "type": "component",
+      "component": "content.bullet-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
