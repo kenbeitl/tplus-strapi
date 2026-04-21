@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^6.0.3",
+    "@geeky-biz/strapi-plugin-elasticsearch": "^0.0.13",
     "@samuel-erb/strapi-plugin-lucide-icon-picker": "^1.1.0",
     "@strapi/plugin-cloud": "5.30.0",
     "@strapi/plugin-color-picker": "^5.31.2",

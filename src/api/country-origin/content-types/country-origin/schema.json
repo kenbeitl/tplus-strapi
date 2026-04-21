@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_origins",
+  "info": {
+    "singularName": "country-origin",
+    "pluralName": "country-origins",
+    "displayName": "CountryOrigin"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "country": {
+      "type": "string"
+    },
+    "tradeMarket": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::business-profile.business-profile",
+      "inversedBy": "selfReportedTradeMarkets"
+    },
+    "exportMarket": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::business-profile.business-profile",
+      "inversedBy": "productExportMarkets"
+    },
+    "importOrigin": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::business-profile.business-profile",
+      "inversedBy": "productImportOrigins"
+    },
+    "origin": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::business-profile.business-profile",
+      "inversedBy": "countryOrigin"
+    }
+  }
+}

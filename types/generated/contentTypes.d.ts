@@ -469,6 +469,211 @@ export interface ApiApplicationApplication extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBusinessProfileBusinessProfile
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'business_profiles';
+  info: {
+    displayName: 'BusinessProfile';
+    pluralName: 'business-profiles';
+    singularName: 'business-profile';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    annualTradeVolume: Schema.Attribute.Enumeration<
+      [
+        'under_1m_hkd',
+        'between_1m_and_5m_hkd',
+        'between_5m_and_10m_hkd',
+        'between_10m_and_50m_hkd',
+        'over_500m_hkd',
+      ]
+    >;
+    averageTransactionValue: Schema.Attribute.Enumeration<
+      [
+        'under_10m_hkd',
+        'between_10m_and_50m_hkd',
+        'between_50m_and_200m_hkd',
+        'over_200m_hkd',
+      ]
+    >;
+    companyDescription: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    companyLogo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    companyName: Schema.Attribute.String & Schema.Attribute.Required;
+    companySize: Schema.Attribute.Enumeration<
+      [
+        'one_to_ten',
+        'eleven_to_one_hundred',
+        'one_hundred_one_to_five_hundred',
+        'over_five_hundred',
+      ]
+    >;
+    countryOrigin: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    highValueTrader: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    highVolumeTrader: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    hkDistrictLocation: Schema.Attribute.Enumeration<
+      [
+        'hk_central_and_western',
+        'hk_eastern',
+        'hk_southern',
+        'hk_wan_chai',
+        'kl_sham_shui_po',
+        'kl_kowloon_city',
+        'kl_kwun_tong',
+        'kl_wong_tai_sin',
+        'kl_yau_tsim_mong',
+        'nt_islands',
+        'nt_kwai_tsing',
+        'nt_north',
+        'nt_sai_kung',
+        'nt_sha_tin',
+        'nt_tai_po',
+        'nt_tsuen_wan',
+        'nt_tuen_mun',
+        'nt_yuen_long',
+      ]
+    >;
+    hsCodeCategory: Schema.Attribute.BigInteger;
+    lastActivity: Schema.Attribute.Enumeration<
+      ['last_7_days', 'last_30_days', 'last_90_days', 'over_90_days']
+    >;
+    lastYearDeclarations: Schema.Attribute.Enumeration<
+      [
+        'under_1m_hkd',
+        'between_1m_and_5m_hkd',
+        'between_5m_and_10m_hkd',
+        'between_10m_and_50m_hkd',
+        'over_500m_hkd',
+      ]
+    >;
+    leadTime: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::business-profile.business-profile'
+    > &
+      Schema.Attribute.Private;
+    longTermMember: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    mainlandChinaPresence: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    minimumMOQ: Schema.Attribute.Integer;
+    primaryTradeRole: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trade-role.trade-role'
+    >;
+    productCertifications: Schema.Attribute.String;
+    productExportMarkets: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    productHSCode: Schema.Attribute.BigInteger;
+    productImportOrigins: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    productKeyMaterials: Schema.Attribute.String;
+    productKeywords: Schema.Attribute.String & Schema.Attribute.Required;
+    productMainImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    productName: Schema.Attribute.String & Schema.Attribute.Required;
+    productPriceRange: Schema.Attribute.String;
+    productShortDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    productType: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-type.product-type'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    registrationDate: Schema.Attribute.Date;
+    relatedIndustries: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::industry.industry'
+    >;
+    selfReportedTradeMarkets: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    topProductCategories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::industry.industry'
+    >;
+    totalDeclarations: Schema.Attribute.Enumeration<
+      [
+        'under_10m_hkd',
+        'between_10m_and_50m_hkd',
+        'between_50m_and_200m_hkd',
+        'over_200m_hkd',
+      ]
+    >;
+    trustLevel: Schema.Attribute.Enumeration<['verified', 'basic']> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCountryOriginCountryOrigin
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'country_origins';
+  info: {
+    displayName: 'CountryOrigin';
+    pluralName: 'country-origins';
+    singularName: 'country-origin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    exportMarket: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    importOrigin: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    > &
+      Schema.Attribute.Private;
+    origin: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    tradeMarket: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFormTemplateFormTemplate
   extends Struct.CollectionTypeSchema {
   collectionName: 'form_templates';
@@ -480,17 +685,26 @@ export interface ApiFormTemplateFormTemplate
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    FormTemplate: Schema.Attribute.Component<'forms.form-info', false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    FormTemplate: Schema.Attribute.Component<'forms.form-info', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::form-template.form-template'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -498,45 +712,101 @@ export interface ApiFormTemplateFormTemplate
   };
 }
 
-export interface ApiServiceService extends Struct.CollectionTypeSchema {
-  collectionName: 'services';
+export interface ApiIndustryIndustry extends Struct.CollectionTypeSchema {
+  collectionName: 'industries';
   info: {
-    displayName: 'Service';
-    pluralName: 'services';
-    singularName: 'service';
+    displayName: 'Industry';
+    pluralName: 'industries';
+    singularName: 'industry';
   };
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
-    Content: Schema.Attribute.DynamicZone<
-      ['content.slideshow', 'content.card-list']
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    code: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
+    industry: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::service.service'
+      'api::industry.industry'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    productCategory: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    Service: Schema.Attribute.Component<'settings.service', false> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductTypeProductType extends Struct.CollectionTypeSchema {
+  collectionName: 'product_types';
+  info: {
+    displayName: 'ProductType';
+    pluralName: 'product-types';
+    singularName: 'product-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-type.product-type'
+    > &
+      Schema.Attribute.Private;
+    pType: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTradeRoleTradeRole extends Struct.CollectionTypeSchema {
+  collectionName: 'trade_roles';
+  info: {
+    displayName: 'TradeRole';
+    pluralName: 'trade-roles';
+    singularName: 'trade-role';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trade-role.trade-role'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
+    tradeRole: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -630,6 +900,93 @@ export interface PluginContentReleasesReleaseAction
     >;
     type: Schema.Attribute.Enumeration<['publish', 'unpublish']> &
       Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginElasticsearchIndexingLog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'indexing-log';
+  info: {
+    description: 'Logged runs of the indexing cron job';
+    displayName: 'Indexing Logs';
+    pluralName: 'indexing-logs';
+    singularName: 'indexing-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    details: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::elasticsearch.indexing-log'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<['pass', 'fail']> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginElasticsearchTask extends Struct.CollectionTypeSchema {
+  collectionName: 'task';
+  info: {
+    description: 'Search indexing tasks';
+    displayName: 'Task';
+    pluralName: 'tasks';
+    singularName: 'task';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    collection_name: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    full_site_indexing: Schema.Attribute.Boolean;
+    indexing_status: Schema.Attribute.Enumeration<['to-be-done', 'done']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'to-be-done'>;
+    indexing_type: Schema.Attribute.Enumeration<
+      ['add-to-index', 'remove-from-index']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'add-to-index'>;
+    item_document_id: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::elasticsearch.task'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1054,10 +1411,16 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::application.application': ApiApplicationApplication;
+      'api::business-profile.business-profile': ApiBusinessProfileBusinessProfile;
+      'api::country-origin.country-origin': ApiCountryOriginCountryOrigin;
       'api::form-template.form-template': ApiFormTemplateFormTemplate;
-      'api::service.service': ApiServiceService;
+      'api::industry.industry': ApiIndustryIndustry;
+      'api::product-type.product-type': ApiProductTypeProductType;
+      'api::trade-role.trade-role': ApiTradeRoleTradeRole;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::elasticsearch.indexing-log': PluginElasticsearchIndexingLog;
+      'plugin::elasticsearch.task': PluginElasticsearchTask;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
