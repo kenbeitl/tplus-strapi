@@ -3,7 +3,7 @@ export default () => ({
         enabled: true,
         config: {
             searchConnector: {
-                host: "http://localhost:9200",
+                host: "https://localhost:9200",
             },
             indexingCronSchedule: "*/5 * * * *",
         },
