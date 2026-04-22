@@ -1,7 +1,11 @@
 import type { Core } from '@strapi/strapi';
 
 const DRAFT_PUBLISH_COLLECTIONS = [
+  'business_profiles',
+  'country_origins',
   'industries',
+  'product_types',
+  'trade_roles',
 ];
 
 export default {
