@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "company_products",
+  "info": {
+    "singularName": "company-product",
+    "pluralName": "company-products",
+    "displayName": "CompanyProduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::business-profile.business-profile",
+      "inversedBy": "companyProductListing"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productShortDescription": {
+      "type": "text"
+    },
+    "productType": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-type.product-type",
+      "mappedBy": "pType"
+    },
+    "productKeyMaterials": {
+      "type": "text"
+    },
+    "productKeywords": {
+      "type": "text"
+    },
+    "productHSCode": {
+      "type": "biginteger"
+    },
+    "productExportMarkets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::country-origin.country-origin",
+      "mappedBy": "exportMarket"
+    },
+    "productImportOrigins": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::country-origin.country-origin",
+      "mappedBy": "importOrigin"
+    },
+    "productPriceRange": {
+      "type": "text"
+    },
+    "minimumMOQ": {
+      "type": "text"
+    },
+    "leadTime": {
+      "type": "text"
+    },
+    "productMainImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "certifications": {
+      "type": "text"
+    },
+    "countryOrigin": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::country-origin.country-origin",
+      "mappedBy": "origin"
+    }
+  }
+}

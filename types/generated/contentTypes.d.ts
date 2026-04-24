@@ -481,6 +481,9 @@ export interface ApiBusinessProfileBusinessProfile
     draftAndPublish: true;
   };
   attributes: {
+    allowInboundMessages: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
     annualTradeVolume: Schema.Attribute.Enumeration<
       [
         'under_1m_hkd',
@@ -499,7 +502,6 @@ export interface ApiBusinessProfileBusinessProfile
       ]
     >;
     companyDescription: Schema.Attribute.Text &
-      Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 500;
       }>;
@@ -507,6 +509,10 @@ export interface ApiBusinessProfileBusinessProfile
       'images' | 'files' | 'videos' | 'audios'
     >;
     companyName: Schema.Attribute.String & Schema.Attribute.Required;
+    companyProductListing: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-product.company-product'
+    >;
     companySize: Schema.Attribute.Enumeration<
       [
         'one_to_ten',
@@ -515,38 +521,17 @@ export interface ApiBusinessProfileBusinessProfile
         'over_five_hundred',
       ]
     >;
-    countryOrigin: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::country-origin.country-origin'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    groupID: Schema.Attribute.UID;
     highValueTrader: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     highVolumeTrader: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
-    hkDistrictLocation: Schema.Attribute.Enumeration<
-      [
-        'hk_central_and_western',
-        'hk_eastern',
-        'hk_southern',
-        'hk_wan_chai',
-        'kl_sham_shui_po',
-        'kl_kowloon_city',
-        'kl_kwun_tong',
-        'kl_wong_tai_sin',
-        'kl_yau_tsim_mong',
-        'nt_islands',
-        'nt_kwai_tsing',
-        'nt_north',
-        'nt_sai_kung',
-        'nt_sha_tin',
-        'nt_tai_po',
-        'nt_tsuen_wan',
-        'nt_tuen_mun',
-        'nt_yuen_long',
-      ]
+    hkDistrictLocation: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hk-district.hk-district'
     >;
     hsCodeCategory: Schema.Attribute.BigInteger;
     lastActivity: Schema.Attribute.Enumeration<
@@ -561,7 +546,6 @@ export interface ApiBusinessProfileBusinessProfile
         'over_500m_hkd',
       ]
     >;
-    leadTime: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -572,32 +556,12 @@ export interface ApiBusinessProfileBusinessProfile
       Schema.Attribute.DefaultTo<false>;
     mainlandChinaPresence: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
-    minimumMOQ: Schema.Attribute.Integer;
+    matchingOptIn: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
     primaryTradeRole: Schema.Attribute.Relation<
       'oneToMany',
       'api::trade-role.trade-role'
-    >;
-    productCertifications: Schema.Attribute.String;
-    productExportMarkets: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::country-origin.country-origin'
-    >;
-    productHSCode: Schema.Attribute.BigInteger;
-    productImportOrigins: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::country-origin.country-origin'
-    >;
-    productKeyMaterials: Schema.Attribute.String;
-    productKeywords: Schema.Attribute.String & Schema.Attribute.Required;
-    productMainImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    productName: Schema.Attribute.String & Schema.Attribute.Required;
-    productPriceRange: Schema.Attribute.String;
-    productShortDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    productType: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::product-type.product-type'
     >;
     publishedAt: Schema.Attribute.DateTime;
     registrationDate: Schema.Attribute.Date;
@@ -605,6 +569,9 @@ export interface ApiBusinessProfileBusinessProfile
       'oneToMany',
       'api::industry.industry'
     >;
+    searchVisibility: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
     selfReportedTradeMarkets: Schema.Attribute.Relation<
       'oneToMany',
       'api::country-origin.country-origin'
@@ -621,8 +588,65 @@ export interface ApiBusinessProfileBusinessProfile
         'over_200m_hkd',
       ]
     >;
-    trustLevel: Schema.Attribute.Enumeration<['verified', 'basic']> &
-      Schema.Attribute.Required;
+    trustLevel: Schema.Attribute.Enumeration<['verified', 'basic']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCompanyProductCompanyProduct
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'company_products';
+  info: {
+    displayName: 'CompanyProduct';
+    pluralName: 'company-products';
+    singularName: 'company-product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    certifications: Schema.Attribute.Text;
+    countryOrigin: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    leadTime: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-product.company-product'
+    > &
+      Schema.Attribute.Private;
+    minimumMOQ: Schema.Attribute.Text;
+    product: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
+    >;
+    productExportMarkets: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    productHSCode: Schema.Attribute.BigInteger;
+    productImportOrigins: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-origin.country-origin'
+    >;
+    productKeyMaterials: Schema.Attribute.Text;
+    productKeywords: Schema.Attribute.Text;
+    productMainImage: Schema.Attribute.Media<'images'>;
+    productName: Schema.Attribute.String;
+    productPriceRange: Schema.Attribute.Text;
+    productShortDescription: Schema.Attribute.Text;
+    productType: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-type.product-type'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -647,11 +671,11 @@ export interface ApiCountryOriginCountryOrigin
       Schema.Attribute.Private;
     exportMarket: Schema.Attribute.Relation<
       'manyToOne',
-      'api::business-profile.business-profile'
+      'api::company-product.company-product'
     >;
     importOrigin: Schema.Attribute.Relation<
       'manyToOne',
-      'api::business-profile.business-profile'
+      'api::company-product.company-product'
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -661,7 +685,7 @@ export interface ApiCountryOriginCountryOrigin
       Schema.Attribute.Private;
     origin: Schema.Attribute.Relation<
       'manyToOne',
-      'api::business-profile.business-profile'
+      'api::company-product.company-product'
     >;
     publishedAt: Schema.Attribute.DateTime;
     tradeMarket: Schema.Attribute.Relation<
@@ -704,6 +728,38 @@ export interface ApiFormTemplateFormTemplate
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::form-template.form-template'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHkDistrictHkDistrict extends Struct.CollectionTypeSchema {
+  collectionName: 'hk_districts';
+  info: {
+    displayName: 'HKDistrict';
+    pluralName: 'hk-districts';
+    singularName: 'hk-district';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hk-district.hk-district'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    place: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-profile.business-profile'
     >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -771,7 +827,7 @@ export interface ApiProductTypeProductType extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     pType: Schema.Attribute.Relation<
       'manyToOne',
-      'api::business-profile.business-profile'
+      'api::company-product.company-product'
     >;
     publishedAt: Schema.Attribute.DateTime;
     type: Schema.Attribute.String;
@@ -1412,8 +1468,10 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::application.application': ApiApplicationApplication;
       'api::business-profile.business-profile': ApiBusinessProfileBusinessProfile;
+      'api::company-product.company-product': ApiCompanyProductCompanyProduct;
       'api::country-origin.country-origin': ApiCountryOriginCountryOrigin;
       'api::form-template.form-template': ApiFormTemplateFormTemplate;
+      'api::hk-district.hk-district': ApiHkDistrictHkDistrict;
       'api::industry.industry': ApiIndustryIndustry;
       'api::product-type.product-type': ApiProductTypeProductType;
       'api::trade-role.trade-role': ApiTradeRoleTradeRole;

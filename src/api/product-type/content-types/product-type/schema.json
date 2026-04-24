@@ -17,7 +17,7 @@
     "pType": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::business-profile.business-profile",
+      "target": "api::company-product.company-product",
       "inversedBy": "productType"
     }
   }

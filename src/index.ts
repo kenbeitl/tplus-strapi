@@ -2,6 +2,7 @@ import type { Core } from '@strapi/strapi';
 
 const DRAFT_PUBLISH_COLLECTIONS = [
   'business_profiles',
+  'company_products',
   'country_origins',
   'industries',
   'product_types',

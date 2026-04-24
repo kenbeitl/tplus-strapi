@@ -11,6 +11,24 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "groupID": {
+      "type": "uid"
+    },
+    "searchVisibility": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "matchingOptIn": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "allowInboundMessages": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
     "companyName": {
       "type": "string",
       "required": true
@@ -62,7 +80,7 @@
     "companyDescription": {
       "type": "text",
       "maxLength": 500,
-      "required": true
+      "required": false
     },
     "companyLogo": {
       "type": "media",
@@ -112,27 +130,10 @@
       "type": "biginteger"
     },
     "hkDistrictLocation": {
-      "type": "enumeration",
-      "enum": [
-        "hk_central_and_western",
-        "hk_eastern",
-        "hk_southern",
-        "hk_wan_chai",
-        "kl_sham_shui_po",
-        "kl_kowloon_city",
-        "kl_kwun_tong",
-        "kl_wong_tai_sin",
-        "kl_yau_tsim_mong",
-        "nt_islands",
-        "nt_kwai_tsing",
-        "nt_north",
-        "nt_sai_kung",
-        "nt_sha_tin",
-        "nt_tai_po",
-        "nt_tsuen_wan",
-        "nt_tuen_mun",
-        "nt_yuen_long"
-      ]
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::hk-district.hk-district",
+      "mappedBy": "place"
     },
     "averageTransactionValue": {
       "type": "enumeration",
@@ -145,7 +146,7 @@
     },
     "trustLevel": {
       "type": "enumeration",
-      "required": true,
+      "required": false,
       "enum": [
         "verified",
         "basic"
@@ -163,69 +164,11 @@
       "type": "boolean",
       "default": false
     },
-    "productName": {
-      "type": "string",
-      "required": true
-    },
-    "productShortDescription": {
-      "type": "text",
-      "required": true
-    },
-    "productType": {
+    "companyProductListing": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::product-type.product-type",
-      "mappedBy": "pType"
-    },
-    "productKeyMaterials": {
-      "type": "string"
-    },
-    "productKeywords": {
-      "type": "string",
-      "required": true
-    },
-    "productHSCode": {
-      "type": "biginteger"
-    },
-    "productExportMarkets": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::country-origin.country-origin",
-      "mappedBy": "exportMarket"
-    },
-    "productImportOrigins": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::country-origin.country-origin",
-      "mappedBy": "importOrigin"
-    },
-    "productPriceRange": {
-      "type": "string"
-    },
-    "minimumMOQ": {
-      "type": "integer"
-    },
-    "leadTime": {
-      "type": "string"
-    },
-    "productMainImage": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "productCertifications": {
-      "type": "string"
-    },
-    "countryOrigin": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::country-origin.country-origin",
-      "mappedBy": "origin"
+      "target": "api::company-product.company-product",
+      "mappedBy": "product"
     }
   }
 }
