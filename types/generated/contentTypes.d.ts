@@ -482,7 +482,6 @@ export interface ApiBusinessProfileBusinessProfile
   };
   attributes: {
     allowInboundMessages: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
     annualTradeVolume: Schema.Attribute.Enumeration<
       [
@@ -501,6 +500,10 @@ export interface ApiBusinessProfileBusinessProfile
         'over_200m_hkd',
       ]
     >;
+    businessProfiles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::business-profile.business-profile'
+    >;
     companyDescription: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 500;
@@ -508,7 +511,7 @@ export interface ApiBusinessProfileBusinessProfile
     companyLogo: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
-    companyName: Schema.Attribute.String & Schema.Attribute.Required;
+    companyName: Schema.Attribute.String;
     companyProductListing: Schema.Attribute.Relation<
       'oneToMany',
       'api::company-product.company-product'
@@ -524,13 +527,17 @@ export interface ApiBusinessProfileBusinessProfile
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    favBusinessProfiles: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::business-profile.business-profile'
+    >;
     groupID: Schema.Attribute.UID;
     highValueTrader: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     highVolumeTrader: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     hkDistrictLocation: Schema.Attribute.Relation<
-      'oneToMany',
+      'oneToOne',
       'api::hk-district.hk-district'
     >;
     hsCodeCategory: Schema.Attribute.BigInteger;
@@ -556,9 +563,7 @@ export interface ApiBusinessProfileBusinessProfile
       Schema.Attribute.DefaultTo<false>;
     mainlandChinaPresence: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
-    matchingOptIn: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
+    matchingOptIn: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     primaryTradeRole: Schema.Attribute.Relation<
       'oneToMany',
       'api::trade-role.trade-role'
@@ -570,7 +575,6 @@ export interface ApiBusinessProfileBusinessProfile
       'api::industry.industry'
     >;
     searchVisibility: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
     selfReportedTradeMarkets: Schema.Attribute.Relation<
       'oneToMany',
@@ -757,10 +761,6 @@ export interface ApiHkDistrictHkDistrict extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     location: Schema.Attribute.String;
-    place: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::business-profile.business-profile'
-    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

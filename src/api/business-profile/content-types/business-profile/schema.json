@@ -16,22 +16,22 @@
     },
     "searchVisibility": {
       "type": "boolean",
-      "required": true,
+      "required": false,
       "default": true
     },
     "matchingOptIn": {
       "type": "boolean",
-      "required": true,
+      "required": false,
       "default": true
     },
     "allowInboundMessages": {
       "type": "boolean",
-      "required": true,
+      "required": false,
       "default": true
     },
     "companyName": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "registrationDate": {
       "type": "date"
@@ -131,9 +131,8 @@
     },
     "hkDistrictLocation": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::hk-district.hk-district",
-      "mappedBy": "place"
+      "relation": "oneToOne",
+      "target": "api::hk-district.hk-district"
     },
     "averageTransactionValue": {
       "type": "enumeration",
@@ -169,6 +168,18 @@
       "relation": "oneToMany",
       "target": "api::company-product.company-product",
       "mappedBy": "product"
+    },
+    "businessProfiles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::business-profile.business-profile",
+      "inversedBy": "favBusinessProfiles"
+    },
+    "favBusinessProfiles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::business-profile.business-profile",
+      "mappedBy": "businessProfiles"
     }
   }
 }

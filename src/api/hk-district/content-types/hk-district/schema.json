@@ -13,12 +13,6 @@
   "attributes": {
     "location": {
       "type": "string"
-    },
-    "place": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::business-profile.business-profile",
-      "inversedBy": "hkDistrictLocation"
     }
   }
 }
