@@ -35,15 +35,16 @@ export default ({ env }) => [
       },
     },
   },
-  {
-    name: 'strapi::cors',
-    config: {
-      origin: [env('CORS_ORIGIN', 'https://portal.tplus.ai')],
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
-      keepHeaderOnError: true,
-    },
-  },
+  // {
+  //   name: 'strapi::cors',
+  //   config: {
+  //     origin: [env('CORS_ORIGIN', 'https://portal.tplus.ai')],
+  //     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+  //     headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+  //     keepHeaderOnError: true,
+  //   },
+  // },
+  'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
