@@ -5,7 +5,7 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
-  url: env('PUBLIC_URL', 'https://portal.tplus.ai/strapi-api'),
+  url: env('PUBLIC_URL', 'https://portal.tplus.ai/strapi'),
   routes: {
     prefix: '/strapi-api'
   }
