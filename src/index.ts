@@ -4,6 +4,7 @@ const DRAFT_PUBLISH_COLLECTIONS = [
   'business_profiles',
   'company_products',
   'country_origins',
+  'hk_districts',
   'industries',
   'product_types',
   'trade_roles',
