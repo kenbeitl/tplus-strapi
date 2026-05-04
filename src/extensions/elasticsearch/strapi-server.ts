@@ -55,12 +55,14 @@ export default (plugin: any) => {
     if (!client) {
       client = new Client({
         node: plugin.config.searchConnector.host,
-        ...(plugin.config.searchConnector.auth
-          ? { auth: plugin.config.searchConnector.auth }
-          : {}),
-        ...(plugin.config.searchConnector.tls
-          ? { tls: plugin.config.searchConnector.tls }
-          : {}),
+        auth: {
+          username: plugin.config.searchConnector.username,
+          password: plugin.config.searchConnector.password,
+        },
+        tls: {
+          ca: plugin.config.searchConnector.certificate,
+          rejectUnauthorized: false
+        }
       });
     }
     return client;
