@@ -12,12 +12,12 @@ export default () => ({
                         password: process.env.ELASTICSEARCH_PASSWORD,
                     },
                 } : {}),
-                ...(process.env.ELASTICSEARCH_CERT_PATH ? {
-                    tls: {
+                tls: {
+                    ...(process.env.ELASTICSEARCH_CERT_PATH ? {
                         ca: fs.readFileSync(process.env.ELASTICSEARCH_CERT_PATH),
-                        rejectUnauthorized: true,
-                    },
-                } : {}),
+                    } : {}),
+                    rejectUnauthorized: process.env.ELASTICSEARCH_CERT_PATH ? true : false,
+                },
             },
             indexAliasName: process.env.ELASTICSEARCH_INDEX_ALIAS,
             indexingCronSchedule: process.env.ELASTICSEARCH_CRON_SCHEDULE || "*/5 * * * *",
