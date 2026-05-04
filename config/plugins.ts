@@ -6,17 +6,13 @@ export default () => ({
         config: {
             searchConnector: {
                 host: process.env.ELASTICSEARCH_HOST || 'http://localhost:9200',
-                ...(process.env.ELASTICSEARCH_USERNAME && process.env.ELASTICSEARCH_PASSWORD ? {
-                    auth: {
-                        username: process.env.ELASTICSEARCH_USERNAME,
-                        password: process.env.ELASTICSEARCH_PASSWORD,
-                    },
-                } : {}),
+                auth: {
+                    username: process.env.ELASTICSEARCH_USERNAME,
+                    password: process.env.ELASTICSEARCH_PASSWORD,
+                },
                 tls: {
-                    ...(process.env.ELASTICSEARCH_CERT_PATH ? {
-                        ca: fs.readFileSync(process.env.ELASTICSEARCH_CERT_PATH),
-                    } : {}),
-                    rejectUnauthorized: process.env.ELASTICSEARCH_CERT_PATH ? true : false,
+                    ca: process.env.ELASTICSEARCH_CERT_PATH ? fs.readFileSync(process.env.ELASTICSEARCH_CERT_PATH) : undefined,
+                    rejectUnauthorized: !!process.env.ELASTICSEARCH_CERT_PATH,
                 },
             },
             indexAliasName: process.env.ELASTICSEARCH_INDEX_ALIAS,
